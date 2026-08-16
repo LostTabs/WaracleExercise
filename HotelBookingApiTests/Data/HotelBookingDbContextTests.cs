@@ -16,9 +16,7 @@ public class HotelBookingDbContextTests
         _connection = new SqliteConnection("DataSource=:memory:");
         await _connection.OpenAsync();
 
-        var options = new DbContextOptionsBuilder<HotelBookingDbContext>()
-            .UseSqlite(_connection)
-            .Options;
+        var options = new DbContextOptionsBuilder<HotelBookingDbContext>().UseSqlite(_connection).Options;
 
         _context = new HotelBookingDbContext(options);
 
@@ -66,7 +64,6 @@ public class HotelBookingDbContextTests
         _context.Hotels.Add(new Hotel("Grand Hotel"));
 
         //When && Then
-        Assert.ThrowsAsync<DbUpdateException>(
-            async () => await _context.SaveChangesAsync());
+        Assert.ThrowsAsync<DbUpdateException>(async () => await _context.SaveChangesAsync());
     }
 }

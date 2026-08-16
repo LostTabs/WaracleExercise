@@ -17,9 +17,7 @@ public class RoomAvailabilityServiceTests
         _connection = new SqliteConnection("DataSource=:memory:");
         await _connection.OpenAsync();
 
-        var options = new DbContextOptionsBuilder<HotelBookingDbContext>()
-            .UseSqlite(_connection)
-            .Options;
+        var options = new DbContextOptionsBuilder<HotelBookingDbContext>().UseSqlite(_connection).Options;
 
         _context = new HotelBookingDbContext(options);
 

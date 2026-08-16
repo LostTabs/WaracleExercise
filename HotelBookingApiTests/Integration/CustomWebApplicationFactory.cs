@@ -71,7 +71,7 @@ public class HotelBookingWebApplicationFactory : WebApplicationFactory<Program>
         return hotel;
     }
 
-    public async Task<Hotel> SeedHotelWithBookingAsync(int checkInDay1, int checkOutDay1)
+    public async Task SeedHotelWithBookingAsync(int checkInDay1, int checkOutDay1)
     {
         using var scope = Services.CreateScope();
 
@@ -100,7 +100,5 @@ public class HotelBookingWebApplicationFactory : WebApplicationFactory<Program>
         
         _context.Bookings.Add(booking);
         await _context.SaveChangesAsync();
-        
-        return hotel;
     }
 }

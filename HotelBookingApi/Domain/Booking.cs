@@ -15,7 +15,6 @@ public class Booking
     public Booking(string reference, Room room, int numberOfGuests, DateOnly checkIn, DateOnly checkOut)
     {
         if (checkOut <= checkIn) throw new ArgumentException("Checkout must be after CheckIn");
-
         if (!room.CanAccommodate(numberOfGuests)) throw new ArgumentException("Too many guests"); 
         
         Reference = reference;

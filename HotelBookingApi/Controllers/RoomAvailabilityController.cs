@@ -14,7 +14,6 @@ public class RoomAvailabilityController : ControllerBase
     {
         _roomAvailabilityService = roomAvailabilityService;
     }
-
     
     /// <summary>
     /// Finds all rooms available that can accommodate the requested number of guests
@@ -37,7 +36,10 @@ public class RoomAvailabilityController : ControllerBase
     {
         try
         {
-            var rooms = await _roomAvailabilityService.GetAvailableRoomsAsync(hotelId, numberOfGuests, checkIn, checkOut);
+            var rooms = await _roomAvailabilityService.GetAvailableRoomsAsync(hotelId,
+                numberOfGuests,
+                checkIn,
+                checkOut);
         
             var response = rooms.Select(room => new RoomAvailabilityDto(
                 room.Id,

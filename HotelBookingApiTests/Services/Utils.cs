@@ -4,7 +4,7 @@ using HotelBookingApi.Services;
 
 namespace HotelBookingApiTests.Services;
 
-public class Utils
+public static class Utils
 {
     public static async Task<Hotel> CreateDefaultHotel(HotelBookingDbContext context)
     {

@@ -18,18 +18,13 @@ public class HotelService
         var searchName = name.Trim();
         if(string.IsNullOrEmpty(searchName)) throw new ArgumentException("Hotel name cannot be null or empty");
         
-        var hotels = await _context.Hotels
-            .AsNoTracking()
-            .ToListAsync();
+        var hotels = await _context.Hotels.AsNoTracking().ToListAsync();
         
-        return hotels.FirstOrDefault(h => 
-            string.Equals(h.Name, searchName, StringComparison.OrdinalIgnoreCase));
+        return hotels.FirstOrDefault(h => string.Equals(h.Name, searchName, StringComparison.OrdinalIgnoreCase));
     }
 
     public async Task<Hotel?> GetByIdAsync(int id)
     {
-        return await _context.Hotels
-            .AsNoTracking()
-            .FirstOrDefaultAsync(h => h.Id == id);
+        return await _context.Hotels.AsNoTracking().FirstOrDefaultAsync(h => h.Id == id);
     }
 }

@@ -15,9 +15,7 @@ public class HotelServiceTests
         _connection = new SqliteConnection("DataSource=:memory:");
         await _connection.OpenAsync();
 
-        var options = new DbContextOptionsBuilder<HotelBookingDbContext>()
-            .UseSqlite(_connection)
-            .Options;
+        var options = new DbContextOptionsBuilder<HotelBookingDbContext>().UseSqlite(_connection).Options;
 
         _context = new HotelBookingDbContext(options);
 
@@ -30,9 +28,7 @@ public class HotelServiceTests
         await _context.DisposeAsync();
         await _connection.DisposeAsync();
     }
-
     
-
     [TestCase("Grand Hotel")]
     [TestCase("granD hotel")]
     [TestCase("   granD hotel  ")]
@@ -40,7 +36,7 @@ public class HotelServiceTests
     {
         //Given
         var hotel = await Utils.CreateDefaultHotel(_context);
-        var service =  Utils.CreateDefaultHotelService(_context);
+        var service = Utils.CreateDefaultHotelService(_context);
         
         //When
         var result = await service.FindByNameAsync(name);
@@ -55,7 +51,7 @@ public class HotelServiceTests
     public void HotelServiceReturnsExceptionWhenNotFound(string name)
     {
         //Given
-        var service =  Utils.CreateDefaultHotelService(_context);
+        var service = Utils.CreateDefaultHotelService(_context);
         
         //When && Then
         Assert.ThrowsAsync<ArgumentException>(async () => await service.FindByNameAsync(name));

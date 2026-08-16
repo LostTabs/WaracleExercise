@@ -10,8 +10,7 @@ public class BookingService
     private readonly HotelBookingDbContext _context;
     private readonly RoomAvailabilityService _availabilityService;
     
-    public BookingService(HotelBookingDbContext context, 
-        RoomAvailabilityService availabilityService)
+    public BookingService(HotelBookingDbContext context, RoomAvailabilityService availabilityService)
     {
         _context = context;
         _availabilityService = availabilityService;
@@ -45,6 +44,8 @@ public class BookingService
 
     public async Task<Booking?> GetByReferenceAsync(string reference)
     {
-        return await _context.Bookings.AsNoTracking().Include(b=> b.Room).FirstOrDefaultAsync(b => b.Reference == reference);
+        return await _context.Bookings.AsNoTracking()
+            .Include(b => b.Room)
+            .FirstOrDefaultAsync(b => b.Reference == reference);
     }
 }

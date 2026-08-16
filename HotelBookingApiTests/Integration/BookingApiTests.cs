@@ -151,8 +151,6 @@ public class BookingApiTests
         );
         
         var response = await _client.PostAsJsonAsync("/api/bookings", createRequest2);
-        /*var createdBooking = await createdResponse.Content.ReadFromJsonAsync<BookingDto>();
-        var response = await _client.GetAsync($"/api/bookings/{createdBooking!.Reference}");*/
         
         //Then
         Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Conflict));

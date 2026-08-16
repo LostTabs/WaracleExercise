@@ -17,9 +17,7 @@ public class BookingServiceTests
         _connection = new SqliteConnection("DataSource=:memory:");
         await _connection.OpenAsync();
 
-        var options = new DbContextOptionsBuilder<HotelBookingDbContext>()
-            .UseSqlite(_connection)
-            .Options;
+        var options = new DbContextOptionsBuilder<HotelBookingDbContext>().UseSqlite(_connection).Options;
 
         _context = new HotelBookingDbContext(options);
 
@@ -96,9 +94,7 @@ public class BookingServiceTests
             checkOut: new DateOnly(2026, 9, 4));
 
         //Then
-        Assert.That(
-            booking2.Room.Id,
-            Is.Not.EqualTo(booking1.Room.Id));
+        Assert.That(booking2.Room.Id, Is.Not.EqualTo(booking1.Room.Id));
     }
     
     [TestCase(2026, 9, 10, 2026, 9, 15, 2026, 9, 15, 2026, 9, 17, false)] //B2 starts on the same day B1 ends
