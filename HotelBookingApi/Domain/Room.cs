@@ -4,7 +4,7 @@ public class Room
 {
     public int Id { get; private set; }
     public int HotelId { get; private set; }
-    public Hotel Hotel { get; set; }
+    public Hotel? Hotel { get; set; }
     public RoomType Type { get; set; }
 
     public int Capacity => Type switch
